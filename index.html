@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Bruh Hub</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body>
+    <div class="jumbotron" style="background-color: rgb(255,0,87);margin-bottom: 16px;"><div class="custom-control custom-switch" style="background-color: rgb(255,0,87);">
+  <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+  <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+</div>
+<script src="dark-mode-switch.min.js"></script>
+        <h1>Bruh Hub</h1>
+        <h1 style="height: 30;font-size: 27.5px;">"Bruh that hub tho"</h1>
+        <p>Here at Bruh Hub, we aim to outbruh the hub.</p>
+        <p><a class="btn btn-primary" role="button" style="background-color: rgb(255,40,113);" href="https://paypal.me/ceebox">Donate</a></p><br></div>
+    <div></div><img class="mx-auto d-block" src="assets/img/bruhHubLogo.png" style="width: 256;height: 256;padding-left: 0rem;max-height: 512px;"><script src="smooth-scroll.js"></script>
+
+<style>
+    body {
+    overflow-y: scroll; /* Add the ability to scroll */
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE and Edge */
+    body {
+        -ms-overflow-style: none;
+    }
+</style>
+
+<audio id="youtube" class="mx-auto d-block" controls></audio>
+
+<script>
+    // YouTube video ID
+var videoID = "D2_r4q2imnQ";
+
+// Fetch video info (using a proxy if avoid CORS errors)
+fetch('https://cors-anywhere.herokuapp.com/' + "https://www.youtube.com/get_video_info?video_id=" + videoID).then(response => {
+  if (response.ok) {
+    response.text().then(ytData => {
+      
+      // parse response to find audio info
+      var ytData = parse_str(ytData);
+      var getAdaptiveFormats = JSON.parse(ytData.player_response).streamingData.adaptiveFormats;
+      var findAudioInfo = getAdaptiveFormats.findIndex(obj => obj.audioQuality);
+      
+      // get the URL for the audio file
+      var audioURL = getAdaptiveFormats[findAudioInfo].url;
+      
+      // update the <audio> element src
+      var youtubeAudio = document.getElementById('youtube');
+      youtubeAudio.src = audioURL;
+      
+    });
+  }
+});
+
+function parse_str(str) {
+  return str.split('&').reduce(function(params, param) {
+    var paramSplit = param.split('=').map(function(value) {
+      return decodeURIComponent(value.replace('+', ' '));
+    });
+    params[paramSplit[0]] = paramSplit[1];
+    return params;
+  }, {});
+}
+</script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+</body>
+
+</html>

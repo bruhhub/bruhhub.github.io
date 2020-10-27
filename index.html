@@ -56,10 +56,7 @@ function playAudio() {
 }
     
     // YouTube video ID
-var videoID;
-    var randInt = Math.floor(Math.random() * Math.floor(69));
-    if (randInt != 53){videoID = "dQw4w9WgXcQ";}
-    else {videoID  = "D2_r4q2imnQ"}
+var videoID = "D2_r4q2imnQ";
 
 // Fetch video info (using a proxy if avoid CORS errors)
 fetch('https://cors-anywhere.herokuapp.com/' + "https://www.youtube.com/get_video_info?video_id=" + videoID).then(response => {
